@@ -7,7 +7,8 @@ from .models import *
 
 def homepage(request):
     """View for homepage"""
-    return HttpResponse("Welcome to BookWander")
+    all_books = Book.objects.all()
+    return render(request, './Wanderapp/homepage.html', {'books':all_books})
 
 
 def signup(request):

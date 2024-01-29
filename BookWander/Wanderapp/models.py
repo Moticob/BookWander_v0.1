@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MaxValueValidator
 
 # Create your models here.
 
@@ -65,7 +66,7 @@ class Review(models.Model):
     review_id = models.AutoField(primary_key=True)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
-    rating = models.IntegerField(max_length=10)
+    rating = models.IntegerField(MaxValueValidator(5))
     comment = models.TextField()
     review_date = models.DateTimeField()
 
