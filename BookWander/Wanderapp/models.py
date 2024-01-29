@@ -42,7 +42,7 @@ class Order(models.Model):
 class OrderItem(models.Model):
     order_item_id = models.AutoField(primary_key=True)
     order_id = models.ForeignKey(Order, on_delete=models.CASCADE)
-    book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
+    book_id = models.ForeignKey(Book, on_delete=models.CASCADE, related_name="book_title")
     quantity = models.IntegerField()
     unit_price = models.DecimalField(max_digits=10, decimal_places=2)
 
