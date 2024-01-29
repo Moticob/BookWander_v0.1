@@ -13,3 +13,12 @@ Pipfile.lock
 Pipfile
 BookWander/Wanderapp/migrations/__pycache__/0004_alter_orderitem_book_id.cpython-310.pyc
 BookWander/Wanderapp/migrations/__pycache__/0005_alter_book_cover_image_url.cpython-310.pyc
+BookWander/Wanderapp/migrations/__pycache__/0007_alter_review_rating.cpython-310.pyc
+BookWander/Wanderapp/migrations/__pycache__/0006_book_in_stock.cpython-310.pyc
+BookWander/Wanderapp/migrations/__pycache__/0003_rename_book_orderitem_book_id_alter_user_email.cpython-310.pyc
+BookWander/Wanderapp/migrations/__pycache__/0002_rename_book_cartitem_book_id_and_more.cpython-310.pyc
+BookWander/Wanderapp/migrations/__pycache__/0001_initial.cpython-310.pyc
+BookWander/Wanderapp/migrations/0007_alter_review_rating.py
+BookWander/Wanderapp/management/__pycache__/__init__.cpython-310.pyc
+BookWander/Wanderapp/__pycache__/views.cpython-310.pyc
+BookWander/Wanderapp/__pycache__/urls.cpython-310.pyc
