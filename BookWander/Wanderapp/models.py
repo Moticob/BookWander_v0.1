@@ -12,7 +12,7 @@ class User(models.Model):
     registration_date = models.DateTimeField()
 
     def __str__(self):
-        return f'{self.user_id} {self.username} {self.registration_date}'
+        return f'{self.username}'
 
 # Books Table
 class Book(models.Model):
@@ -24,9 +24,10 @@ class Book(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField()
     cover_image_url = models.ImageField(upload_to='images/')
+    in_stock = models.BooleanField(default=True)
 
     def __str__(self):
-        return f"{self.book_id} {self.genre} {self.title} {self.author}"
+        return f"{self.title} {self.author}"
 
 # Orders Table
 class Order(models.Model):
@@ -69,7 +70,7 @@ class Review(models.Model):
     review_date = models.DateTimeField()
 
     def __str__(self):
-        return f"{self.review_id} {self.user_id} {self.book_id} {self.rating} {self.comment}"
+        return f"{self.user_id} {self.book_id} rating:{self.rating} {self.comment}"
 
 # Feedback Table
 class Feedback(models.Model):
