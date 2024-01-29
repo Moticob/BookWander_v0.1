@@ -23,7 +23,7 @@ class Book(models.Model):
     publication_date = models.DateField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField()
-    cover_image_url = models.URLField()
+    cover_image_url = models.ImageField(upload_to='images/')
 
     def __str__(self):
         return f"{self.book_id} {self.genre} {self.title} {self.author}"

@@ -12,3 +12,4 @@ BookWander/BookWander/__pycache__/wsgi.cpython-310.pyc
 Pipfile.lock
 Pipfile
 BookWander/Wanderapp/migrations/__pycache__/0004_alter_orderitem_book_id.cpython-310.pyc
+BookWander/Wanderapp/migrations/__pycache__/0005_alter_book_cover_image_url.cpython-310.pyc
