@@ -65,7 +65,7 @@ class Review(models.Model):
     review_id = models.AutoField(primary_key=True)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
-    rating = models.IntegerField()
+    rating = models.IntegerField(max_length=10)
     comment = models.TextField()
     review_date = models.DateTimeField()
 
