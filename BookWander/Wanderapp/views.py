@@ -1,7 +1,14 @@
-<<<<<<< HEAD
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
+from django.http import HttpResponse
+from .models import *
+
+
+def homepage(request):
+    """View for homepage"""
+    return HttpResponse("Welcome to BookWander")
+
 
 def signup(request):
     if request.method == 'POST':
@@ -28,13 +35,3 @@ def login(request):
 def logout(request):
     logout(request)
     return redirect('home')  # Redirect to your home page
-=======
-from django.shortcuts import render
-from .models import *
-from django.http import HttpResponse
-# Create your views here.
-
-def homepage(request):
-    """View for homepage"""
-    return HttpResponse("Welcome to BookWander")
->>>>>>> 285408309aa726726b799e403a2f987290f255aa
