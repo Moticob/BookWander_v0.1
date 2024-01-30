@@ -10,10 +10,6 @@ def homepage(request):
     all_books = Book.objects.all()
     return render(request, './Wanderapp/homepage.html', {'books':all_books})
 
-def genres(request):
-    return{
-        'genres': Genre.objects.all()
-    }
 
 # view for a specific book
 def book_detail(request, slug):
