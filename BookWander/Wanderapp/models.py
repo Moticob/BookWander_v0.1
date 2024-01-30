@@ -36,7 +36,7 @@ class Book(models.Model):
     publication_date = models.DateField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField()
-    cover_image_url = models.ImageField(upload_to='images/')
+    cover_image_url = models.ImageField(upload_to='images/', default='images/default.png')
     in_stock = models.BooleanField(default=True)
 
     def get_absolute_url(self):
