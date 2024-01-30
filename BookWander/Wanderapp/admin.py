@@ -8,11 +8,15 @@ class UserAdmin(admin.ModelAdmin):
 
 @admin.register(models.Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ['title', 'genre', 'author', 'publication_date',
+    list_display = ['title', 'genre_name', 'author', 'publication_date',
                     'price', 'in_stock'
                     ]
-    list_filter = ['in_stock', 'genre', 'author']
+    list_filter = ['in_stock', 'genre_name', 'author']
     list_editable = ['price', 'in_stock']
+
+@admin.register(models.Genre)
+class GenreAdmin(admin.ModelAdmin):
+    list_display = ['genre_name']
 
 admin.site.register(models.Order)
 admin.site.register(models.OrderItem)
