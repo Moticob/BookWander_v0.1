@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from django.http import HttpResponse
@@ -7,7 +7,25 @@ from .models import *
 
 def homepage(request):
     """View for homepage"""
-    return HttpResponse("Welcome to BookWander")
+    all_books = Book.objects.all()
+    return render(request, './Wanderapp/homepage.html', {'books':all_books})
+
+def genres(request):
+    return{
+        'genres': Genre.objects.all()
+    }
+
+# view for a specific book
+def book_detail(request, slug):
+    book = get_object_or_404(Book, slug=slug, in_stock=True)
+    return render(request, './Wanderapp/books/detail.html', {'book':book}) 
+
+# view for all books in a genre
+def genre_list(request, genre_slug):
+    genre = get_object_or_404(Genre, slug=genre_slug)
+    books = Book.objects.filter(genre_name=genre)
+    return render(request, './Wanderapp/books/genre.html', {"genre":genre, 'book': books})
+
 
 
 def signup(request):
@@ -35,3 +53,4 @@ def login(request):
 def logout(request):
     logout(request)
     return redirect('home')  # Redirect to your home page
+

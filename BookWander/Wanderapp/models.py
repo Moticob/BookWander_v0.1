@@ -1,4 +1,6 @@
 from django.db import models
+from django.core.validators import MaxValueValidator
+from django.urls import reverse
 
 # Create your models here.
 
@@ -13,21 +15,35 @@ class User(models.Model):
 
     def __str__(self):
         return f'{self.username}'
+# Genre table
+class Genre(models.Model):
+    genre_name = models.CharField(max_length=50)
+    slug = models.SlugField(max_length=255, unique=True)
+
+    def get_absolute_url(self):
+        return reverse('wanderapp:genre_list', args=[self.slug])
+
+    def __str__(self):
+        return f"{self.genre_name}"
 
 # Books Table
 class Book(models.Model):
     book_id = models.AutoField(primary_key=True)
+    slug = models.SlugField(max_length=255)
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255)
-    genre = models.CharField(max_length=255)
+    genre_name = models.ForeignKey(Genre, on_delete=models.CASCADE)
     publication_date = models.DateField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField()
     cover_image_url = models.ImageField(upload_to='images/')
     in_stock = models.BooleanField(default=True)
 
+    def get_absolute_url(self):
+        return reverse('wanderapp:book_detail', args=[self.slug])
+
     def __str__(self):
-        return f"{self.title} {self.author}"
+        return f"{self.title} {self.genre_name} {self.author}"
 
 # Orders Table
 class Order(models.Model):
@@ -53,7 +69,7 @@ class OrderItem(models.Model):
 # User_Preferences Table
 class UserPreferences(models.Model):
     user_id = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
-    favorite_genre = models.CharField(max_length=255)
+    genre_name = models.ForeignKey(Genre, on_delete=models.CASCADE)
     preferred_authors = models.CharField(max_length=255)
     notification_settings = models.CharField(max_length=255)
 
@@ -65,7 +81,7 @@ class Review(models.Model):
     review_id = models.AutoField(primary_key=True)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
-    rating = models.IntegerField(max_length=10)
+    rating = models.IntegerField(MaxValueValidator(5))
     comment = models.TextField()
     review_date = models.DateTimeField()
 
