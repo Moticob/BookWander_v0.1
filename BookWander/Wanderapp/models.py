@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MaxValueValidator
+from django.urls import reverse
 
 # Create your models here.
 
@@ -17,6 +18,10 @@ class User(models.Model):
 # Genre table
 class Genre(models.Model):
     genre_name = models.CharField(max_length=50)
+    slug = models.SlugField(max_length=255, unique=True)
+
+    def get_absolute_url(self):
+        return reverse('wanderapp:genre_list', args=[self.slug])
 
     def __str__(self):
         return f"{self.genre_name}"
@@ -24,6 +29,7 @@ class Genre(models.Model):
 # Books Table
 class Book(models.Model):
     book_id = models.AutoField(primary_key=True)
+    slug = models.SlugField(max_length=255)
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255)
     genre_name = models.ForeignKey(Genre, on_delete=models.CASCADE)
@@ -32,6 +38,9 @@ class Book(models.Model):
     description = models.TextField()
     cover_image_url = models.ImageField(upload_to='images/')
     in_stock = models.BooleanField(default=True)
+
+    def get_absolute_url(self):
+        return reverse('wanderapp:book_detail', args=[self.slug])
 
     def __str__(self):
         return f"{self.title} {self.genre_name} {self.author}"
