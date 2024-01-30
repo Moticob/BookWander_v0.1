@@ -13,11 +13,13 @@ def homepage(request):
 
 # view for a specific book
 def book_detail(request, slug):
+    """provides the detail of a single book"""
     book = get_object_or_404(Book, slug=slug, in_stock=True)
     return render(request, './Wanderapp/books/detail.html', {'book':book}) 
 
 # view for all books in a genre
 def genre_list(request, genre_slug):
+    """shows books by genre"""
     genre = get_object_or_404(Genre, slug=genre_slug)
     books = Book.objects.filter(genre_name=genre)
     return render(request, './Wanderapp/books/genre.html', {"genre":genre, 'book': books})
