@@ -66,7 +66,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'Wanderapp.context_processors.genres',  # makes the views.genres view availabe
-                                                        # in all templates
+                'basket.context_processors.basket',      # in all templates
             ],
         },
     },
