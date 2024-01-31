@@ -24,7 +24,7 @@
             <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom">
                 <div class="container-fluid">
                     <a class="navbar-brand"
-                       href="/homepage">BookWander</a>
+                       href="/">BookWander</a>
                     <button class="navbar-toggler"
                             type="button"
                             data-bs-toggle="collapse"
@@ -49,13 +49,11 @@
                                 <ul class="dropdown-menu"
                                     aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item"
-                                           href="{% url "
-                                           wanderapp:homepage"
-                                           %}">All</a></li>
+                                           href="/">All</a></li>
                                     {% for g in genres %}
-                                    <li {%
+                                    <li {% 
                                         if
-                                        genre.slug==g.slug
+                                        genre.slug == g.slug
                                         %}class="selected"
                                         {%
                                         endif
