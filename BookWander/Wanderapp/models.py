@@ -1,9 +1,12 @@
 from django.db import models
 from django.core.validators import MaxValueValidator
+from django.db.models.query import QuerySet
 from django.urls import reverse
 
 # Create your models here.
-
+class BookManager(models.Manager):
+    def get_queryset(self):
+        return super(BookManager, self).get_queryset().filter(in_stock=True)
 
 # Users Table
 class User(models.Model):
@@ -38,6 +41,7 @@ class Book(models.Model):
     description = models.TextField()
     cover_image_url = models.ImageField(upload_to='images/', default='images/default.png')
     in_stock = models.BooleanField(default=True)
+    books = BookManager()
 
     def get_absolute_url(self):
         return reverse('wanderapp:book_detail', args=[self.slug])

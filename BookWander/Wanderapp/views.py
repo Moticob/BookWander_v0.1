@@ -7,7 +7,7 @@ from .models import *
 
 def homepage(request):
     """View for homepage"""
-    all_books = Book.objects.all()
+    all_books = Book.books.all()
     return render(request, './Wanderapp/homepage.html', {'books':all_books})
 
 
@@ -21,7 +21,7 @@ def book_detail(request, slug):
 def genre_list(request, genre_slug):
     """shows books by genre"""
     genre = get_object_or_404(Genre, slug=genre_slug)
-    books = Book.objects.filter(genre_name=genre)
+    books = Book.books.filter(genre_name=genre)
     return render(request, './Wanderapp/books/genre.html', {"genre":genre, 'book': books})
 
 
