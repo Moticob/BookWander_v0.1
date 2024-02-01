@@ -86,7 +86,7 @@ class TestBook(TestCase):
             publication_date = timezone.now(),
             price = 100.00
         )
-        self.ID = Book.objects.get(title="Dune").book_id
+        self.ID = self.b1.book_id
 
     def tearDown(self):
         """ the tear down function"""

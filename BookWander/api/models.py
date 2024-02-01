@@ -4,6 +4,10 @@ from django.db import models
 
 # Users Table
 class User(models.Model):
+    """
+    User model.
+    *need to add uniqueness to the username and email
+    """
     user_id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=255)
     email = models.EmailField()
@@ -59,4 +63,3 @@ class CartItem(models.Model):
     cart_id = models.ForeignKey(ShoppingCart, on_delete=models.CASCADE)
     book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
     quantity = models.IntegerField()
-
