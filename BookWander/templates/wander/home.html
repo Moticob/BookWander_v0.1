@@ -1,0 +1,19 @@
+{% extends 'wander/base.html' %}
+
+{% block content %}
+
+<h2>Homepage</h2>
+<p>Welcome to My BookWander,{% if user.is_authenticated %} {{user.username}} {% else %} Visitor {% endif %}</p>
+<div>
+  Recently Added books:
+  <ul>
+    {% for b in books %}
+    <li>
+      <img src={{ b.cover_image_url }}>
+      {{ b.title }}
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% endblock %}
