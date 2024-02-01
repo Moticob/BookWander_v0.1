@@ -22,3 +22,16 @@ class UserSerializer(serializers.ModelSerializer):
             registration_date=timezone.now()
         )
         return u
+
+    def update(self, instance, validated_data):
+        instance.user_id = validated_data.get('user_id', instance.user_id)
+        instance.username = validated_data.get('username', instance.username)
+        instance.password_hash = make_password(validated_data.get('password_hash', instance.password_hash), hasher="bcrypt")
+        instance.updated_at = validated_data.get('updated_at', instance.updated_at)
+        instance.save()
+        return instance
+
+    def validate_name(self, value):
+        if User.objects.filter(username=value).exists():
+            raise serializers.ValidationError("Name already exist")
+        return value

@@ -36,7 +36,7 @@ class UserApi(APIView):
             user = User.objects.get(user_id=id)
         except User.DoesNotExist:
             raise Http404("Given query not found....")
-        s = self.sc(user, data = request.data)
+        s = self.sc(instance=user, data=request.data)
         if s.is_valid():
             s.save()
             return Response(s.data)
@@ -60,6 +60,6 @@ class UserCreateApi(APIView):
         s = self.sc(data=request.data)
         if s.is_valid():
             s.save()
-            return Response(s.data)
+            return Response(s.data, status=status.HTTP_201_CREATED)
         else:
             return Response(s.errors, status=status.HTTP_400_BAD_REQUEST)
