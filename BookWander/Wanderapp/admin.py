@@ -32,3 +32,4 @@ admin.site.register(models.ShoppingCart)
 admin.site.register(models.CartItem)
 admin.site.register(models.Subscription)
 admin.site.register(models.Image)
+
