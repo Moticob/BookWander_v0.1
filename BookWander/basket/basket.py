@@ -20,9 +20,11 @@ class Basket:
         """
         Adding and updating the user's basket session data
         """
-        book_id = book.book_id
+        book_id = str(book.book_id)
 
-        if book_id not in self.basket:
+        if book_id in self.basket:
+            self.basket[book_id]['qty'] = qty
+        else:
             self.basket[book_id] = {"price": str(book.price), "qty": int(qty)}
         self.save()
 
@@ -68,13 +70,13 @@ class Basket:
 
     def update(self, book, qty):
         """
-        Update values in session data
+        Updates values in session data
         """
         book_id = str(book)
 
-        if book_id not in self.basket:
-            self.basket[book_id]['qty'] = qty
+        if book_id in self.basket:
+            self.basket[book_id]["qty"] = qty
         self.save()
-    
+
     def save(self):
         self.session.modified = True
