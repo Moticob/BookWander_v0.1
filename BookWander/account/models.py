@@ -11,7 +11,7 @@ from django_countries.fields import CountryField
 class CustomAccountManager(BaseUserManager):
 
     def create_superuser(self, email, user_name, password, **other_fields):
-
+        """creates a new super user"""
         other_fields.setdefault('is_staff', True)
         other_fields.setdefault('is_superuser', True)
         other_fields.setdefault('is_active', True)
