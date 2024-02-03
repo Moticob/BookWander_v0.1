@@ -8,16 +8,6 @@ class BookManager(models.Manager):
     def get_queryset(self):
         return super(BookManager, self).get_queryset().filter(in_stock=True)
 
-# Users Table
-class User(models.Model):
-    user_id = models.AutoField(primary_key=True)
-    username = models.CharField(max_length=255)
-    email = models.EmailField(max_length=50)
-    password_hash = models.CharField(max_length=255)
-    registration_date = models.DateTimeField()
-
-    def __str__(self):
-        return f'{self.username}'
 # Genre table
 class Genre(models.Model):
     genre_name = models.CharField(max_length=50)
@@ -48,6 +38,19 @@ class Book(models.Model):
 
     def __str__(self):
         return f"{self.title} {self.genre_name} {self.author}"
+    
+# moved the User Table into the 'account' app
+""" 
+# users table
+class User(models.Model):
+    user_id = models.AutoField(primary_key=True)
+    username = models.CharField(max_length=255)
+    email = models.EmailField(max_length=50)
+    password_hash = models.CharField(max_length=255)
+    registration_date = models.DateTimeField()
+
+    def __str__(self):
+        return f'{self.username}'
 
 # Orders Table
 class Order(models.Model):
@@ -134,3 +137,4 @@ class Image(models.Model):
     image_id = models.AutoField(primary_key=True)
     book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
     image_url = models.URLField()
+ """
