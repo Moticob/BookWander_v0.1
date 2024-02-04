@@ -38,7 +38,7 @@ class Book(models.Model):
 
     def __str__(self):
         return f"{self.title} {self.genre_name} {self.author}"
-    
+
 # moved the User Table into the 'account' app
 """ 
 # users table
