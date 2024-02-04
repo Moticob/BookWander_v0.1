@@ -47,8 +47,9 @@ Follow these steps to set up and run the BookWander application:
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/BookWander.git
-    cd BookWander
+    git clone https://github.com/yourusername/BookWander_v0.1.git
+    cd BookWander_v0.1
+
     ```
 
 2. Install dependencies:
