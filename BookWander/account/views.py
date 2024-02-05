@@ -27,6 +27,7 @@ def dashboard(request):
 
 @login_required
 def edit_details(request):
+    """ Edits user's  details """
     if request.method == 'POST':
         user_form = UserEditForm(instance=request.user, data=request.POST)
 

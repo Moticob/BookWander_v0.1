@@ -16,5 +16,7 @@ urlpatterns = [
 
     # User dashboard
     path('dashboard/', views.dashboard, name='dashboard'),
-
+    path('profile/edit/', views.edit_details, name='edith_details'),
+    path('profile/delete_user/', views.delete_user, name='delete_user'),
+    path('profile/delete_confirm/', TemplateView.as_view(template_name="account/user/delete_confirm.html"), name='delete_confirmation'),
 ]

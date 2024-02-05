@@ -147,7 +147,7 @@ class PwdResetConfirmForm(SetPasswordForm):
 
 
 class UserEditForm(forms.ModelForm):
-
+    """ Form for editing user details """
     email = forms.EmailField(
         label="Account email (can not be changed)",
         max_length=200,
