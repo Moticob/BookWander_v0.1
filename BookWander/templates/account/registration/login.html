@@ -1,4 +1,4 @@
-{% extends "../../store/base.html" %}
+{% extends "../../Wanderapp/base.html" %}
 {% block title %}Log-in{% endblock %}
 {% block content %}
 
@@ -26,7 +26,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12 col-lg-6  mx-auto">
-                            <form class="account-form p-4 rounded" action="{% url 'account:login' %}" method="post">
+                            <form class="account-form p-4" action="{% url 'account:login' %}" method="post">
 
                                 {% csrf_token %}
                                 <h3 class="mb-4">Sign In</h3>
@@ -51,13 +51,6 @@
                                     <a href="{% url "account:register" %}">Create an account</a>
                                 </p>
                             </form>
-                            <p class="small text-center pt-4">
-                                {% comment %} <a href="{% url "password_reset" %}">Forgotten Password?</a> {% endcomment %}
-                            </p>
-                            <p class="small text-center">
-                                {% comment %} <a href="{% url "accounts:register" %}">Help Center?</a> {% endcomment %}
-                            </p>
-                     
                         </div>
                     </div>
                 </div>

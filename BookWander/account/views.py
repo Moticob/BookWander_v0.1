@@ -18,6 +18,7 @@ from .tokens import account_activation_token
 
 @login_required
 def dashboard(request):
+    """ User's dashboard """
     orders = user_orders(request)
     return render(request,
                   'account/user/dashboard.html',
