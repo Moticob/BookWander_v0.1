@@ -1,3 +1,5 @@
+""" Registration forms for a User """
+
 from django import forms
 from django.contrib.auth.forms import (
     AuthenticationForm,
@@ -9,7 +11,7 @@ from .models import UserBase
 
 
 class UserLoginForm(AuthenticationForm):
-
+    """ user login form """
     username = forms.CharField(
         widget=forms.TextInput(
             attrs={
@@ -31,6 +33,7 @@ class UserLoginForm(AuthenticationForm):
 
 
 class RegistrationForm(forms.ModelForm):
+    """ User Registration form """
 
     user_name = forms.CharField(
         label="Enter Username", min_length=4, max_length=50, help_text="Required"
@@ -93,7 +96,7 @@ class RegistrationForm(forms.ModelForm):
 
 
 class PwdResetForm(PasswordResetForm):
-
+    """ Password reset form """
     email = forms.EmailField(
         max_length=254,
         widget=forms.TextInput(
@@ -116,6 +119,7 @@ class PwdResetForm(PasswordResetForm):
 
 
 class PwdResetConfirmForm(SetPasswordForm):
+    """ Password reset confirmation form """
     new_password1 = forms.CharField(
         label="New password",
         widget=forms.PasswordInput(
