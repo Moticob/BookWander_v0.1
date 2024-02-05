@@ -54,6 +54,7 @@ class RegistrationForm(forms.ModelForm):
         )
 
     def clean_user_name(self):
+        """ Raises an error if user_name already exists """
         user_name = self.cleaned_data["user_name"].lower()
         r = UserBase.objects.filter(user_name=user_name)
         if r.count():
@@ -61,12 +62,14 @@ class RegistrationForm(forms.ModelForm):
         return user_name
 
     def clean_password2(self):
+        """ Raises an error if passwords don't match """
         cd = self.cleaned_data
         if cd["password"] != cd["password2"]:
             raise forms.ValidationError("Passwords do not match.")
         return cd["password2"]
 
     def clean_email(self):
+        """ Raises an error if email already exists """
         email = self.cleaned_data["email"]
         if UserBase.objects.filter(email=email).exists():
             raise forms.ValidationError(
@@ -75,6 +78,7 @@ class RegistrationForm(forms.ModelForm):
         return email
 
     def __init__(self, *args, **kwargs):
+        """ Utilizes bootstrap to style input fields """
         super().__init__(*args, **kwargs)
         self.fields["user_name"].widget.attrs.update(
             {"class": "form-control mb-3", "placeholder": "Username"}
