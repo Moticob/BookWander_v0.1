@@ -3,3 +3,4 @@
 Django==3.1.4
 Pillow==8.0.1  # for handling image
 django-countries==7.0 # countries for user acc
+six==1.15.0  # helps with compatiblity issues btn py2 and py3
