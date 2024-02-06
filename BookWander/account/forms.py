@@ -11,7 +11,8 @@ from .models import UserBase
 
 
 class UserLoginForm(AuthenticationForm):
-    """ user login form """
+    """user login form"""
+
     username = forms.CharField(
         widget=forms.TextInput(
             attrs={
@@ -33,7 +34,7 @@ class UserLoginForm(AuthenticationForm):
 
 
 class RegistrationForm(forms.ModelForm):
-    """ User Registration form """
+    """User Registration form"""
 
     user_name = forms.CharField(
         label="Enter Username", min_length=4, max_length=50, help_text="Required"
@@ -54,7 +55,7 @@ class RegistrationForm(forms.ModelForm):
         )
 
     def clean_user_name(self):
-        """ Raises an error if user_name already exists """
+        """Raises an error if user_name already exists"""
         user_name = self.cleaned_data["user_name"].lower()
         r = UserBase.objects.filter(user_name=user_name)
         if r.count():
@@ -62,14 +63,14 @@ class RegistrationForm(forms.ModelForm):
         return user_name
 
     def clean_password2(self):
-        """ Raises an error if passwords don't match """
+        """Raises an error if passwords don't match"""
         cd = self.cleaned_data
         if cd["password"] != cd["password2"]:
             raise forms.ValidationError("Passwords do not match.")
         return cd["password2"]
 
     def clean_email(self):
-        """ Raises an error if email already exists """
+        """Raises an error if email already exists"""
         email = self.cleaned_data["email"]
         if UserBase.objects.filter(email=email).exists():
             raise forms.ValidationError(
@@ -78,7 +79,7 @@ class RegistrationForm(forms.ModelForm):
         return email
 
     def __init__(self, *args, **kwargs):
-        """ Utilizes bootstrap to style input fields """
+        """Utilizes bootstrap to style input fields"""
         super().__init__(*args, **kwargs)
         self.fields["user_name"].widget.attrs.update(
             {"class": "form-control mb-3", "placeholder": "Username"}
@@ -100,7 +101,8 @@ class RegistrationForm(forms.ModelForm):
 
 
 class PwdResetForm(PasswordResetForm):
-    """ Password reset form """
+    """Password reset form"""
+
     email = forms.EmailField(
         max_length=254,
         widget=forms.TextInput(
@@ -113,17 +115,19 @@ class PwdResetForm(PasswordResetForm):
     )
 
     def clean_email(self):
+        """Email validation"""
         email = self.cleaned_data["email"]
         u = UserBase.objects.filter(email=email)
         if not u:
             raise forms.ValidationError(
-                "Unfortunatley we can not find that email address"
+                "Unfortunately we can not find that email address"
             )
         return email
 
 
 class PwdResetConfirmForm(SetPasswordForm):
-    """ Password reset confirmation form """
+    """Password reset confirmation form"""
+
     new_password1 = forms.CharField(
         label="New password",
         widget=forms.PasswordInput(
@@ -147,7 +151,8 @@ class PwdResetConfirmForm(SetPasswordForm):
 
 
 class UserEditForm(forms.ModelForm):
-    """ Form for editing user details """
+    """Form for editing user details"""
+
     email = forms.EmailField(
         label="Account email (can not be changed)",
         max_length=200,
