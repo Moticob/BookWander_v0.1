@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Wanderapp',
     'basket',
-    'account'
+    'account',
+    'payment'
 ]
 
 MIDDLEWARE = [
