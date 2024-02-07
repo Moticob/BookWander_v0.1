@@ -1,6 +1,6 @@
 from Wanderapp.models import Book
 from decimal import Decimal
-
+from django.conf import settings
 
 class Basket:
     """Base Baseket class"""
@@ -11,9 +11,9 @@ class Basket:
         if not available, creates a new one
         """
         self.session = request.session
-        basket = self.session.get("skey")
-        if "skey" not in request.session:
-            basket = self.session["skey"] = {}
+        basket = self.session.get(settings.BASKET_SESSION_ID)
+        if settings.BASKET_SESSION_ID not in request.session:
+            basket = self.session[settings.BASKET_SESSION_ID] = {}
         self.basket = basket
 
     def add(self, book, qty):
@@ -50,15 +50,24 @@ class Basket:
         Gets basket data and counts qty of items
         """
         return sum(item["qty"] for item in self.basket.values())
+    
+    def get_subtotal_price(self):
+        return sum(Decimal(item['price']) * item['qty'] for item in self.basket.values())
 
     def get_total_price(self):
         """
         Returns total basket price
         """
-        return sum(
-            Decimal(item["price"]) * item["qty"] for item in self.basket.values()
-        )
+        subtotal = sum(Decimal(item['price']) * item['qty'] for item in self.basket.values())
 
+        if subtotal == 0:
+            shipping = Decimal(0.00)
+        else:
+            shipping = Decimal(11.50)
+
+        total = subtotal + Decimal(shipping)
+        return total
+    
     def delete(self, book):
         """
         Delete item from session data
@@ -80,3 +89,8 @@ class Basket:
 
     def save(self):
         self.session.modified = True
+
+    def clear(self):
+        """ Removes basket from session """
+        del self.session[settings.BASKET_SESSION_ID]
+        self.save()

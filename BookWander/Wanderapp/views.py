@@ -3,8 +3,9 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from django.http import HttpResponse
 from .models import *
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def homepage(request):
     """View for homepage"""
     all_books = Book.books.all()
@@ -18,37 +19,9 @@ def book_detail(request, slug):
     return render(request, './Wanderapp/books/detail.html', {'book':book}) 
 
 # view for all books in a genre
+@login_required
 def genre_list(request, genre_slug):
     """shows books by genre"""
     genre = get_object_or_404(Genre, slug=genre_slug)
     books = Book.books.filter(genre_name=genre)
     return render(request, './Wanderapp/books/genre.html', {"genre":genre, 'book': books})
-
-
-
-def signup(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('home')  # Redirect to your home page
-    else:
-        form = UserCreationForm()
-    return render(request, 'signup.html', {'form': form})
-
-def login(request):
-    if request.method == 'POST':
-        form = AuthenticationForm(request, request.POST)
-        if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            return redirect('home')  # Redirect to your home page
-    else:
-        form = AuthenticationForm()
-    return render(request, 'login.html', {'form': form})
-
-def logout(request):
-    logout(request)
-    return redirect('home')  # Redirect to your home page
-

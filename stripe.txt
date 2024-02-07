@@ -1,0 +1,10 @@
+For testing stripe payment
+to view stripe logs, run: .\stripe listen --forward-to localhost:8000/payment/webhook/
+
+below are test credit card details:
+
+No auth: 4242424242424242
+
+Auth: 4000002500003155
+
+Error: 4000000000009995
