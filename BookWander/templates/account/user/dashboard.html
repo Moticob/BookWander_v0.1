@@ -1,4 +1,4 @@
-{% extends "../../Wanderapp/base.html" %} {% load static %} {% block title %}Basket Summary{%endblock %} {% block content %}
+{% extends "../../Wanderapp/base.html" %} {% load static %} {% block title %}Your Dashboard{%endblock %} {% block content %}
 
 <main class="pt-5">
   <div class="container" style="max-width: 1000px">
@@ -54,12 +54,12 @@
         <div class="card mb-3 border-0">
           <div class="row g-0">
             <div class="col-md-2 d-none d-md-block">
-              <img class="img-fluid" style="width:90px" src="{{item.product.image.url}}" />
+              <img class="img-fluid" style="width:90px" src="{{item.book.cover_image_url.url}}" />
             </div>
             <div class="col-md-10">
               <div class="card-body p-1">
-                <a class="text-decoration-none" href="{{ item.product.get_absolute_url }}">
-                  <p class="card-text small">{{item.product|title}}</p>
+                <a class="text-decoration-none" href="{{ item.book.get_absolute_url }}">
+                  <p class="card-text small">{{item.book|title}}</p>
                 </a>
               </div>
             </div>

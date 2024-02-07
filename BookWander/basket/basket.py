@@ -1,6 +1,6 @@
 from Wanderapp.models import Book
 from decimal import Decimal
-
+from django.conf import settings
 
 class Basket:
     """Base Baseket class"""
@@ -80,3 +80,8 @@ class Basket:
 
     def save(self):
         self.session.modified = True
+
+    def clear(self):
+        """ Removes basket from session """
+        del self.session[settings.BASKET_SESSION_ID]
+        self.save()
