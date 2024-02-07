@@ -50,7 +50,7 @@
         {% for item in basket %} 
         {% with book=item.book %}
 
-        <div class="card mb-3 border-0 product-item" data-index="{{book.id}}">
+        <div class="card mb-3 border-0 product-item" data-index="{{book.book_id}}">
           <div class="row g-0">
             <div class="col-md-2 d-none d-md-block">
               <img class="img-fluid mx-auto d-block" alt="Responsive image"
@@ -62,15 +62,15 @@
                   <p class="card-text pb-3">{{book.title}}</p>
                 </a>
                     <label for="select">Qty</label>
-                    <select id="select{{book.id}}" style="width:50px;height:31px;">
+                    <select id="select{{book.book_id}}" style="width:50px;height:31px;">
                       <option value="" selected disabled hidden>{{item.qty}}</option>
                       <option value="">1</option>
                       <option value="">2</option>
                       <option value="">3</option>
                       <option value="">4</option>
                     </select>
-                <a type="button" id="update-button" data-index="{{book.id}}" class="update-button text-decoration-none small ps-3">Update</a>
-                <a type="button" id="delete-button" data-index="{{book.id}}" class="delete-button text-decoration-none small">Delete</a>
+                <a type="button" id="update-button" data-index="{{book.book_id}}" class="update-button text-decoration-none small ps-3">Update</a>
+                <a type="button" id="delete-button" data-index="{{book.book_id}}" class="delete-button text-decoration-none small">Delete</a>
               </div>
             </div>
           </div>
