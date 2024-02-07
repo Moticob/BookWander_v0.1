@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-l*=nz679c)jl)2@x368mo7#1+89k1xtygii)iwk(7!&!2bpv(u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# hosts the app would run on
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -39,7 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Wanderapp',
-    'basket'
+    'basket',
+    'account',
+    'payment',
+    'orders',
 ]
 
 MIDDLEWARE = [
@@ -133,3 +137,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # path to media directory for images
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+# Basket session ID
+BASKET_SESSION_ID = 'basket'
+
+# Custom user model
+AUTH_USER_MODEL = 'account.UserBase'
+LOGIN_REDIRECT_URL = '/account/dashboard'
+LOGIN_URL = '/account/login/'
+
+# Email setting 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Stripe payment
+PUBLISHABLE_KEY = 'pk_test_51OgrgOKhCYvwMDupmr2dSlsgAE6e46FAW0ZgpPEYbOnP5uPjt4zVmx0jkNAk90h5SsLgKwK6aYObeWDLUo9xDEhu00tBiezWK6'
+STRIPE_ENDPOINT_SECRET = 'whsec_27581395f4f13dbd8b173292cc1e86013b0a06cbfc70fc4330eee422ad1ebd46'
+# stripe listen --forward-to localhost:8000/payment/webhook/

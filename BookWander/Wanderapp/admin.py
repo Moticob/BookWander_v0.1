@@ -2,9 +2,6 @@ from django.contrib import admin
 
 from . import models 
 # Register your models here.
-@admin.register(models.User)
-class UserAdmin(admin.ModelAdmin):
-    list_display = ['username', 'email']
 
 @admin.register(models.Book)
 class BookAdmin(admin.ModelAdmin):
@@ -20,6 +17,11 @@ class GenreAdmin(admin.ModelAdmin):
     list_display = ['genre_name', 'slug']
     prepopulated_fields = {'slug': ('genre_name',)}
 
+""" 
+@admin.register(models.User)
+class UserAdmin(admin.ModelAdmin):
+    list_display = ['username', 'email']
+
 admin.site.register(models.Order)
 admin.site.register(models.OrderItem)
 admin.site.register(models.UserPreferences)
@@ -32,3 +34,4 @@ admin.site.register(models.ShoppingCart)
 admin.site.register(models.CartItem)
 admin.site.register(models.Subscription)
 admin.site.register(models.Image)
+ """
