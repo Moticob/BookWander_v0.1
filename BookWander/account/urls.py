@@ -16,8 +16,7 @@ urlpatterns = [
         ),
         name="login",
     ),
-    path("logout/",auth_views.LogoutView.as_view(next_page=" "),name="logout",
-    ),
+    path('logout/', views.logout_view, name='logout'),
     path("register/", views.account_register, name="register"),
     path("activate/<slug:uidb64>/<slug:token>/", views.account_activate, name="activate"
     ),

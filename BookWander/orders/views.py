@@ -4,6 +4,7 @@ from django.shortcuts import render
 from basket.basket import Basket
 
 from .models import Order, OrderItem
+from account.models import UserBase
 
 
 def add(request):
@@ -13,8 +14,8 @@ def add(request):
         order_key = request.POST.get('order_key')
         user_id = request.user.id
         baskettotal = basket.get_total_price()
-
-        # Check if order exists
+        #print(UserBase.objects.filter())
+        #Check if order exists
         if Order.objects.filter(order_key=order_key).exists():
             pass
         else:

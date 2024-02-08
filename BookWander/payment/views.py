@@ -36,7 +36,7 @@ def BasketView(request):
         metadata={'userid': request.user.id}
     )
 
-    return render(request, 'payment/home.html', {'client_secret': intent.client_secret})
+    return render(request, 'payment/pay_index.html', {'client_secret': intent.client_secret})
 
 
 @csrf_exempt
