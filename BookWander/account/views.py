@@ -24,6 +24,9 @@ def dashboard(request):
         request, "account/user/dashboard.html", {"section": "profile", "orders": orders}
     )
 
+def logout_view(request):
+    logout(request)
+    return redirect('account:login')
 
 @login_required
 def edit_details(request):
