@@ -41,7 +41,7 @@ BookWander is a modern web application that transforms the way users experience 
 ![checkout](Screenshots/payment.png)
 
 ### Order placed
-![order placed](screenshots/order_placed.png)
+![order placed](Screenshots/order_placed.png)
 
 ### User Dashboard
 **User Profile**: Customizable user profiles with purchase history.
