@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'account',
     'payment',
     'orders',
+    "rest_framework",
+    "django_elasticsearch_dsl",
 ]
 
 MIDDLEWARE = [
@@ -153,3 +155,18 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 PUBLISHABLE_KEY = 'pk_test_51OgrgOKhCYvwMDupmr2dSlsgAE6e46FAW0ZgpPEYbOnP5uPjt4zVmx0jkNAk90h5SsLgKwK6aYObeWDLUo9xDEhu00tBiezWK6'
 STRIPE_ENDPOINT_SECRET = 'whsec_27581395f4f13dbd8b173292cc1e86013b0a06cbfc70fc4330eee422ad1ebd46'
 # stripe listen --forward-to localhost:8000/payment/webhook/
+# Elastic search
+ELASTICSEARCH_DSL = {
+    "default": {
+        "hosts": "http://localhost:9200",
+        "http_auth": ("user01", "user01"),
+        "ca_certs": None,
+        "verify_certs":False,
+    }
+}
+REST_FRAMEWORK = {
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+    "PAGE_SIZE": 25,
+    'DEFAULT_PERMISSION_CLASSES': [],
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json'
+}

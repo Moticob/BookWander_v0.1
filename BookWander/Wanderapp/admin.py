@@ -1,9 +1,9 @@
 from django.contrib import admin
 
-from . import models 
+from .models import  Book, Genre
 # Register your models here.
 
-@admin.register(models.Book)
+@admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
     list_display = ['title', 'genre_name','slug', 'author', 'publication_date',
                     'price', 'in_stock'
@@ -12,10 +12,13 @@ class BookAdmin(admin.ModelAdmin):
     list_editable = ['price', 'in_stock']
     prepopulated_fields = {'slug': ('title',)}
 
-@admin.register(models.Genre)
+@admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):
     list_display = ['genre_name', 'slug']
     prepopulated_fields = {'slug': ('genre_name',)}
+
+#admin.site.register(Book, BookAdmin)
+#admin.site.register(Genre, GenreAdmin)
 
 """ 
 @admin.register(models.User)
