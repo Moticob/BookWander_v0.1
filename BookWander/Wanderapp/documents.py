@@ -43,5 +43,6 @@ class BookDocument(Document):
             "author",
             "price",
             "description",
-            "cover_image_url"
+            "cover_image_url",
+            "publication_date"
         ]
