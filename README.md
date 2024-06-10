@@ -124,7 +124,7 @@ There is a plethora of features that we would love to implement into BookWander 
 ## Authors
 - Kobby Boateng: <kobbyboateng14@gmail.com>  - <https://github.com/2oothpick>
 - Fatima Zahra El Fatehy <fzelfatehy@gmail.com> -  https://github.com/fatima-elfat
-- Oussama Ed-derouach <oussama.ed-derouach@outlook.com> - https://github.com/ED-DEROUACH 
+ 
 
 ## License
 
